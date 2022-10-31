@@ -15,7 +15,7 @@ SECRET_KEY = 'django-insecure-2b0kji1+=ylv5!wxx_+@^!@myeiu5lf3)4&a!%0ai)f-e)h_4&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -28,7 +28,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'ticket',
+    'applications.ticket',
+    'applications.users'
 ]
 
 MIDDLEWARE = [
@@ -73,24 +74,24 @@ WSGI_APPLICATION = 'tcplatform.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
-# DATABASES={
-#    'default':{
-#       'ENGINE':'tenant_schemas.postgresql_backend',
-#       'NAME': env('DATABASE_NAME'),
-#       'USER': env('DATABASE_USER'),
-#       'PASSWORD': env('DATABASE_PASSWORD'),
-#       'HOST': env('DATABASE_HOST'),
-#       'PORT':env('DATABASE_PORT'),
-#       'OPTIONS': {'sslmode': 'require'}
-#    }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
 # }
+
+DATABASES={
+   'default':{
+      'ENGINE':'django.db.backends.postgresql',
+      'NAME': env('DATABASE_NAME'),
+      'USER': env('DATABASE_USER'),
+      'PASSWORD': env('DATABASE_PASSWORD'),
+      'HOST': env('DATABASE_HOST'),
+      'PORT':env('DATABASE_PORT'),
+      'OPTIONS': {'sslmode': 'require'}
+   }
+}
 
 
 # Password validation
@@ -135,3 +136,5 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'users.User'   
