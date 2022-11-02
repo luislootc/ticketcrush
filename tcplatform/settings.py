@@ -13,7 +13,7 @@ environ.Env.read_env()
 SECRET_KEY = 'django-insecure-2b0kji1+=ylv5!wxx_+@^!@myeiu5lf3)4&a!%0ai)f-e)h_4&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -47,7 +47,11 @@ REST_FRAMEWORK = {
     # or allow read-only access for unauthenticated users.
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ]
+    ],
+    # Return information in json format 
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    )
 }
 
 ROOT_URLCONF = 'tcplatform.urls'
